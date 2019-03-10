@@ -6,6 +6,8 @@ from bs4 import BeautifulSoup as soup
 #Global variable for cached data
 cached_data = {}
 
+
+# Function to generate the list of apps and add in cached data
 def generate_app_list(search_key):
 
     playstore_url = "https://play.google.com/store/search?q=" + search_key + "&c=apps"
@@ -35,8 +37,8 @@ def generate_app_list(search_key):
         app_details.append(single_app)
     cached_data[search_key] = app_details
 
-
-
+    
+#Function to fetch data from cached_data variable
 def app_search(search_key):
     if cached_data.get(search_key)!=None :
         return (cached_data[search_key])
@@ -44,7 +46,7 @@ def app_search(search_key):
         generate_app_list(search_key)
         return cached_data[search_key]
 
-
+# Function to return the list in html format
 def html_format(html_code):
     html = """<HTML>
         <body>
